@@ -10,6 +10,9 @@ const movies = [
 ]
 
 
+
+
+
 app.get("/movies/create",(req, res) => {
     res.send('ok')
 
@@ -21,6 +24,31 @@ app.get("/movies/create",(req, res) => {
     }
     res.send(response)
   })
+
+  app.get("/movies/read-by-date",(req,res)=>{
+    movies.sort((a,b)=>(a.year > b.year) ? 1 :-1);
+    const response = {
+      status: 200, data: movies
+    };
+    res.send(response)
+  })
+
+  app.get("/movies/read-by-rating",(req,res)=>{
+    movies.sort((a,b)=>(a.rating > b.rating) ? 1 :-1);
+    const response = {
+      status: 200, data: movies
+    };
+    res.send(response)
+  })
+
+  app.get("/movies/read-by-title",(req,res)=>{
+    movies.sort((a,b)=>(a.title > b.title) ? 1 :-1);
+    const response = {
+      status: 200, data: movies
+    };
+    res.send(response)
+  })
+  
 
   app.get("/movies/update",(req, res) => {
     res.send('ok')
@@ -68,3 +96,4 @@ app.get("/hello/:id", (req,res)=>{
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`)
 })
+
