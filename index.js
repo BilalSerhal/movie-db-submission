@@ -63,6 +63,35 @@ app.get("/movies/read/id/:id",(req,res)=>{
     res.send(response)
   }
 })
+
+function getlength(number) {
+  return number.toString().length;
+}
+
+app.get("/movies/add",(req,res)=>{
+  let title = req.query.title
+  let year = parseInt(req.query.year);
+  let rating = req.query.rating;
+  if(title ==  undefined || getlength(year)<4 ||  year== undefined){
+    let response = {
+      status:403, error:true, message: "you cannot create a movie without providin a title and a year"
+    }
+    res.send(response)
+  }
+  else{
+    if(rating === undefined){
+      rating = "4";
+      let movie = { title: title, year:year, rating:rating}
+      movies.push(movie);
+      res.send(movies)  
+    }else{
+      let movie = { title: title, year:year, rating:rating}
+      movies.push(movie);
+      res.send(movies)  
+    } 
+  }
+  
+})
   app.get("/movies/update",(req, res) => {
     res.send('ok')
   })
