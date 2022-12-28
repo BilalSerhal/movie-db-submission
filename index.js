@@ -49,7 +49,20 @@ app.get("/movies/create",(req, res) => {
     res.send(response)
   })
   
-
+app.get("/movies/read/id/:id",(req,res)=>{
+  const {id}= req.params
+  if(movies.length >= id){
+    const response = {
+      status: 200, data: movies[id-1]
+    }
+    res.send(response)
+  }else{
+    const response = {
+      status: 404, data: "Not found"
+    }
+    res.send(response)
+  }
+})
   app.get("/movies/update",(req, res) => {
     res.send('ok')
   })
