@@ -10,6 +10,24 @@ const movies = [
 ]
 
 
+exports.actuaDelete = function (req, res) {
+  var movieTitle = req.params.title;
+  var movieYear = req.params.year;
+  var movieRating = req.body.rating;
+
+  delete usr["title"+ movieTitle +".title"];
+  delete usr["year"+ movieYear +".year"];
+  delete usr["ratig"+ movieRating +".rating"];
+
+  models.User.findByIdAndUpdate(movieTitle, movieYear, movieRating function (error, user){
+      if (error) res.json(error);
+      res.redirect('/list_EE');
+  });
+}
+
+
+
+
 
 
 
